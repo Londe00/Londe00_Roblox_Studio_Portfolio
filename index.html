@@ -1,450 +1,1199 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Londe00 ● Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #fff;
-            line-height: 1.6;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Londe00 ● Portfolio | Roblox Developer</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #30CFD0;
+      --secondary: #330867;
+      --accent: #FF6B6B;
+      --glass-bg: rgba(30, 30, 30, 0.95);
+      --glass-border: 1px solid rgba(255,255,255,0.15);
+      --shadow: 0 25px 50px rgba(0,0,0,0.5);
+      --shadow-neon: 0 0 30px rgba(48, 207, 208, 0.4);
+      --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        a {
-            color: #fff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        a:hover {
-            color: #bbb;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      color: #fff;
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        .container {
-            width: 85%;
-            margin: auto;
-            overflow: hidden;
-            padding: 0 20px;
-        }
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(48, 207, 208, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(51, 8, 103, 0.15) 0%, transparent 50%);
+      animation: bgFloat 30s ease-in-out infinite;
+    }
 
-        header {
-            background: #1e1e1e;
-            padding: 20px 0;
-            border-bottom: 1px solid #333;
-        }
+    @keyframes bgFloat {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.03) rotate(180deg); }
+    }
 
-        header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.05;
+      pointer-events: none;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.8), transparent),
+        linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+      background-size: 200px 200px;
+      animation: noiseMove 20s linear infinite;
+    }
 
-        header #branding h1 {
-            font-size: 2em;
-            font-weight: 650;
-        }
+    @keyframes noiseMove {
+      0% { transform: translate(0px, 0px); }
+      100% { transform: translate(20px, 20px); }
+    }
 
-        header nav ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      z-index: 1000;
+    }
 
-        header nav li {
-            display: inline;
-            margin-left: 30px;
-        }
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      width: 0%;
+      transition: width 0.3s ease;
+      box-shadow: 0 0 15px var(--primary);
+    }
 
-        main {
-            padding: 60px 0;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-        section {
-            margin-bottom: 60px;
-        }
+    header {
+      background: rgba(30, 30, 30, 0.95);
+      border-bottom: var(--glass-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+    }
 
-        section h2 {
-            font-size: 2em;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #fff;
-        }
+    @supports not (backdrop-filter: blur(25px)) {
+      header,
+      .glass-card,
+      .mobile-menu,
+      .portfolio-content {
+        background: rgba(40, 40, 40, 0.98);
+        border: 1px solid rgba(255,255,255,0.2);
+      }
+    }
 
-        #about .about-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
 
-        #about .about-content img {
-            width: 250px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
-        #about .about-content img:hover {
-            transform: scale(0.95);
-            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
-        }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
 
-        #about .about-content .about-text {
-            flex: 1;
-        }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+    }
 
-        #about .about-content p {
-            font-size: 1.1em;
-            color: #eee;
-        }
+    .nav-links a {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 1.75rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
 
-        #portfolio .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      transition: left 0.6s ease;
+    }
 
-        #portfolio .portfolio-item {
-            background: #1e1e1e;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .nav-links a:hover::before,
+    .nav-links a.active::before {
+      left: 100%;
+    }
 
-        #portfolio .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
-        }
+    .nav-links a i {
+      font-size: 1.1rem;
+      transition: transform 0.3s ease;
+    }
 
-        #portfolio .portfolio-item img {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
+    .nav-links a:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.15);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(48, 207, 208, 0.3);
+      transform: translateY(-2px);
+    }
 
-        #portfolio .portfolio-item h3 {
-            font-size: 1.6em;
-            margin-bottom: 10px;
-            color: #fff;
-        }
+    .nav-links a:hover i {
+      transform: scale(1.1);
+    }
 
-        #portfolio .portfolio-item p {
-            font-size: 1.1em;
-            color: #eee;
-        }
+    .nav-links a.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 8px 25px rgba(48, 207, 208, 0.4);
+      transform: translateY(-1px);
+    }
 
-        #contact {
-            background: #1e1e1e;
-            padding: 80px 0;
-            text-align: center;
-            border-radius: 10px;
-        }
+    .lang-toggle {
+      display: flex;
+      gap: 0.25rem;
+    }
 
-        .email-link {
-            color: #4cacaf;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.3em;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            transition: color 0.3s ease;
-        }
+    .lang-btn {
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.9rem;
+      min-width: 40px;
+    }
 
-        .animated-gradient {
-            background: linear-gradient(45deg, #4CAF50, #02c7f8c9, #9C27B0, #E91E63);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .lang-btn.active,
+    .lang-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-neon);
+    }
 
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    .mobile-toggle {
+      display: none;
+      background: rgba(255,255,255,0.1);
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      font-size: 1.6rem;
+      padding: 0.8rem;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(20px);
+    }
 
-        footer {
-            background: #1e1e1e;
-            color: #888;
-            text-align: center;
-            padding: 25px 0;
-            font-size: 0.9em;
-        }
+    .mobile-toggle:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: scale(1.05);
+      box-shadow: var(--shadow-neon);
+    }
 
-        .translate-buttons {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1000;
-            display: flex;
-            gap: 5px;
-        }
+    main {
+      padding: 5rem 0;
+    }
 
-        .translate-button {
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid #4cacaf;
-            color: #fff;
-            padding: 8px 16px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
+    section {
+      margin-bottom: 6rem;
+      position: relative;
+    }
 
-        .translate-button:hover {
-            background-color: #4cacaf;
-            color: #000;
-        }
+    h2 {
+      font-size: 3.5rem;
+      text-align: center;
+      margin-bottom: 4rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+      position: relative;
+    }
 
-        .translate-button.active {
-            background-color: #4cacaf;
-            color: #000;
-        }
-        
-        
-        #copy-message {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #1e1e1e;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: 1px solid #4cacaf;
-            z-index: 1001;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            
-            
-            visibility: hidden;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-        
-        #copy-message.show {
-            
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .glass-card {
+      background: rgba(30, 30, 30, 0.95);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: var(--glass-border);
+      border-radius: 25px;
+      padding: 3rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
 
-        @media (max-width: 768px) {
-            .container { width: 95%; }
-            header .container { flex-direction: column; align-items: flex-start; }
-            header #branding { margin-bottom: 15px; }
-            header nav li { margin-left: 15px; }
-            #about .about-content { flex-direction: column; text-align: center; }
-            #about .about-content img { width: 200px; margin-bottom: 20px; }
-            #portfolio .portfolio-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, transparent, rgba(48, 207, 208, 0.05));
+      border-radius: 25px;
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 0;
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+
+    .glass-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-item {
+      padding: 3rem 2rem;
+      background: rgba(20, 20, 20, 0.8);
+      border: 2px solid rgba(48, 207, 208, 0.2);
+      border-radius: 20px;
+      text-align: center;
+      transition: var(--transition);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(48, 207, 208, 0.2), transparent);
+      transition: left 0.7s;
+    }
+
+    .service-item:hover::before {
+      left: 100%;
+    }
+
+    .service-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .service-icon {
+      font-size: 4.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .service-item h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 25px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .about-image:hover {
+      transform: scale(1.02);
+    }
+
+    .about-text {
+      font-size: 1.2rem;
+      line-height: 1.9;
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .skill-item {
+      padding: 2rem;
+      background: rgba(20, 20, 20, 0.85);
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: var(--transition);
+    }
+
+    .skill-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .skill-percent {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .skill-bar {
+      width: 100%;
+      height: 14px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .skill-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 10px;
+      width: 0;
+      transition: width 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .portfolio-item {
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-20px);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .portfolio-image {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .portfolio-item:hover .portfolio-image {
+      transform: scale(1.05);
+    }
+
+    .portfolio-content {
+      padding: 2rem;
+      background: rgba(30, 30, 30, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .portfolio-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .portfolio-title a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .portfolio-title a:hover {
+      color: var(--primary);
+    }
+
+    .portfolio-group {
+      margin-top: 2rem;
+      padding: 1.5rem 2rem;
+      background: linear-gradient(135deg, rgba(48, 207, 208, 0.15), rgba(51, 8, 103, 0.15));
+      border: 2px solid rgba(48, 207, 208, 0.3);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-group::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s;
+    }
+
+    .portfolio-group:hover::before {
+      left: 100%;
+    }
+
+    .portfolio-group:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-neon);
+      border-color: var(--primary);
+    }
+
+    .portfolio-group strong {
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .portfolio-group a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      justify-items: center;
+    }
+
+    .contact-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.5rem 3rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 350px;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .contact-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.6s;
+    }
+
+    .contact-button:hover::before {
+      left: 100%;
+    }
+
+    .contact-button:hover:not(.copied) {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .contact-button.copied {
+      background: linear-gradient(135deg, #00C851, #007E33);
+      animation: pulse 0.7s ease;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+
+    .discord-btn {
+      background: linear-gradient(135deg, #5865F2, #7289DA) !important;
+    }
+
+    .contact-text {
+      text-align: center;
+      font-size: 1.3rem;
+      margin-bottom: 4rem;
+      opacity: 0.9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 0;
+      opacity: 0.9;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      max-width: 320px;
+      height: 100vh;
+      background: rgba(30, 30, 30, 0.95);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      z-index: 1001;
+      padding: 6rem 2.5rem 2.5rem;
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+   
+    .mobile-menu-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      font-size: 2.2rem;
+      color: #fff;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .mobile-menu-close:hover {
+      color: var(--primary);
+      transform: rotate(90deg);
+    }
+
+    .mobile-menu .nav-links {
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .mobile-menu .nav-links a {
+      justify-content: flex-start;
+      padding: 1.25rem 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-toggle { display: block; }
+      .nav-links { display: none; }
+      .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+      }
+      h2 { font-size: 2.5rem; }
+      .services-grid,
+      .skills-grid,
+      .portfolio-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .nav-right { gap: 1.2rem; }
+      .lang-btn {
+        padding: 0.6rem 0.9rem;
+        font-size: 0.85rem;
+        min-width: 36px;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.08);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(var(--primary), var(--secondary));
+      border-radius: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+      box-shadow: var(--shadow-neon);
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div id="branding">
-                <h1 class="animated-gradient">● Londe00</h1>
-            </div>
-            <nav>
-                <ul>
-                    
-                    <li><a href="#about" data-translate-key="nav_about">● Обо мне</a></li>
-                    <li><a href="#portfolio" data-translate-key="nav_portfolio">● Портфолио</a></li>
-                    <li><a href="#contact" data-translate-key="nav_contact">● Контакты</a></li>
-                </ul>
-            </nav>
+  <div class="bg-animation"></div>
+  <div class="noise-overlay"></div>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <header>
+    <div class="container">
+      <div class="nav-container">
+        <div class="logo">● Londe00</div>
+        <div class="nav-right">
+          <ul class="nav-links" id="desktopNavLinks">
+            <li><a href="#services" class="nav-link"><i class="fas fa-rocket"></i> <span data-translate="nav.services">Услуги</span></a></li>
+            <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> <span data-translate="nav.about">Обо мне</span></a></li>
+            <li><a href="#skills" class="nav-link"><i class="fas fa-chart-line"></i> <span data-translate="nav.skills">Навыки</span></a></li>
+            <li><a href="#portfolio" class="nav-link active"><i class="fas fa-gamepad"></i> <span data-translate="nav.portfolio">Портфолио</span></a></li>
+            <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> <span data-translate="nav.contact">Контакты</span></a></li>
+          </ul>
+          <div class="lang-toggle">
+            <button class="lang-btn active" data-lang="ru">RU</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Открыть меню">☰</button>
         </div>
-    </header>
-
-    <main>
-        <section id="about">
-            <div class="container">
-                <h2 data-translate-key="about_title">● Обо мне</h2>
-                <div class="about-content">
-                    <img src="Profile.png" alt="Моя фотография" class="fade-in image">
-                    <div class="about-text">
-                        <p data-translate-key="about_text">● Я мидл Roblox разработчик, специализирующийся на программировании. Обладаю навыками соло девелопинга Lua и опытом создания различных игровых механик и систем в Roblox Studio. Я всегда стремлюсь к изучению новых техник и инструментов разработки, чтобы создавать увлекательные и качественные игровые проекты. В моем портфолио вы найдете примеры моих работ, демонстрирующие мои навыки и умение воплощать идеи в реальность.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="portfolio">
-            <div class="container">
-                <h2 data-translate-key="portfolio_title">● Портфолио</h2>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <img src="Dimensional Showdown.png" alt="The Dimensional Showdown" style="width: 20%;" class="fade-in image">
-                        <h3><a href="https://www.roblox.com/games/117777430041647/The-Dimensional-Showdown" target="_blank">● The Dimensional Showdown</a></h3>
-                        <p data-translate-key="portfolio_project_desc">● Моя новая игра в Roblox, над которой я сейчас работаю.</p>
-                        <p><span data-translate-key="portfolio_dev_group">● Группа Разработчиков: </span><a href="https://www.roblox.com/communities/862464652/Inspirations-Studio#!/about" target="_blank">Inspirations Studios <img src="Inspirations Studios.png" alt="Inspirations Studios Logo" style="width: 20px; vertical-align: middle;"></a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2 data-translate-key="contact_title">● Контакты</h2>
-                <p data-translate-key="contact_prompt">● Свяжитесь со мной для обсуждения ваших проектов и идей!</p>
-                <a href="mailto:londe00srs@gmail.com" class="email-link" id="email-link">londe00srs@gmail.com</a>
-                <p data-translate-key="contact_discord">● Discord: londe00</p>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container" data-translate-key="footer_copyright">
-            &copy; 2026 Londe00. Все права защищены.
-        </div>
-    </footer>
-
-    
-    <div id="copy-message" data-translate-key="copy_message_text">● Почта скопирована!</div>
-
-    
-    <div class="translate-buttons">
-        <button class="translate-button" data-lang="en" data-translate-key="lang_en">● English</button>
-        <button class="translate-button active" data-lang="ru" data-translate-key="lang_ru">● Русский</button>
+      </div>
     </div>
+  </header>
 
-    <script>
-    
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Навигационное меню">
+    <button class="mobile-menu-close" id="mobileClose" aria-label="Закрыть меню">&times;</button>
+    <ul class="nav-links" id="mobileNavLinks">
+      <li><a href="#services" class="nav-link"><i class="fas fa-rocket"></i> <span data-translate="nav.services">Услуги</span></a></li>
+      <li><a href="#about" class="nav-link"><i class="fas fa-user"></i> <span data-translate="nav.about">Обо мне</span></a></li>
+      <li><a href="#skills" class="nav-link"><i class="fas fa-chart-line"></i> <span data-translate="nav.skills">Навыки</span></a></li>
+      <li><a href="#portfolio" class="nav-link"><i class="fas fa-gamepad"></i> <span data-translate="nav.portfolio">Портфолио</span></a></li>
+      <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> <span data-translate="nav.contact">Контакты</span></a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="ru">RU</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+  </div>
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const emailLink = document.getElementById('email-link');
-        const copyMessage = document.getElementById('copy-message');
-        const translateButtons = document.querySelectorAll('.translate-button');
+  <main>
+    <section id="services" class="fade-in">
+      <div class="container">
+        <div class="glass-card">
+          <h2 data-translate="services.title">Мои услуги</h2>
+          <div class="services-grid">
+            <div class="service-item" role="button" tabindex="0">
+              <i class="fas fa-gamepad service-icon" aria-hidden="true"></i>
+              <h3 data-translate="services.game">Разработка игр</h3>
+              <p data-translate="services.game.desc">Полный цикл разработки Roblox игр от концепта до релиза с оптимизацией производительности</p>
+            </div>
+            <div class="service-item" role="button" tabindex="0">
+              <i class="fas fa-code service-icon" aria-hidden="true"></i>
+              <h3 data-translate="services.script">Скриптинг Lua</h3>
+              <p data-translate="services.script.desc">Сложные игровые механики, системы монетизации и оптимизированный код</p>
+            </div>
+            <div class="service-item" role="button" tabindex="0">
+              <i class="fas fa-paint-brush service-icon" aria-hidden="true"></i>
+              <h3 data-translate="services.ui">UI/UX дизайн</h3>
+              <p data-translate="services.ui.desc">Современные адаптивные интерфейсы с анимациями и интуитивной навигацией</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-       
-        const translations = {
-            nav_about: {
-                ru: '● Обо мне',
-                en: '● About Me'
-            },
-            nav_portfolio: {
-                ru: '● Портфолио',
-                en: '● Portfolio'
-            },
-            nav_contact: {
-                ru: '● Контакты',
-                en: '● Contacts'
-            },
-            about_title: {
-                ru: '● Обо мне',
-                en: '● About Me'
-            },
-            about_text: {
-                ru: '● Я мидл Roblox разработчик, специализирующийся на программировании. Обладаю навыками соло девелопинга Lua и опытом создания различных игровых механик и систем в Roblox Studio. Я всегда стремлюсь к изучению новых техник и инструментов разработки, чтобы создавать увлекательные и качественные игровые проекты. В моем портфолио вы найдете примеры моих работ, демонстрирующие мои навыки и умение воплощать идеи в реальность.',
-                en: '● I am a middle Roblox developer specializing in programming. I have skills in solo Lua development and experience in creating various game mechanics and systems in Roblox Studio. I always strive to learn new development techniques and tools to create engaging and high-quality game projects. In my portfolio, you will find examples of my work that demonstrate my skills and ability to bring ideas to life.'
-            },
-            portfolio_title: {
-                ru: '● Портфолио',
-                en: '● Portfolio'
-            },
-            portfolio_project_desc: {
-                ru: '● Моя новая игра в Roblox, над которой я сейчас работаю.',
-                en: '● My new game in Roblox that I am currently working on.'
-            },
-            portfolio_dev_group: {
-                ru: '● Группа Разработчиков: ',
-                en: '● Developer Group: '
-            },
-            contact_title: {
-                ru: '● Контакты',
-                en: '● Contacts'
-            },
-            contact_prompt: {
-                ru: '● Свяжитесь со мной для обсуждения ваших проектов и идей!',
-                en: '● Contact me to discuss your projects and ideas!'
-            },
-            contact_discord: {
-                ru: '● Discord: londe00',
-                en: '● Discord: londe00'
-            },
-            footer_copyright: {
-                ru: '&copy; 2026 Londe00. Все права защищены.',
-                en: '&copy; 2026 Londe00. All rights reserved.'
-            },
-            copy_message_text: {
-                ru: '● Почта скопирована!',
-                en: '● Email copied!'
-            },
-            lang_en: {
-                ru: '● English',
-                en: '● English'
-            },
-            lang_ru: {
-                ru: '● Русский',
-                en: '● Russian'
-            }
+    <section id="about" class="fade-in">
+      <div class="container">
+        <div class="glass-card">
+          <h2 data-translate="about.title">Обо мне</h2>
+          <div class="about-content">
+            <img src="Profile.png" alt="Фото Londe00 - Roblox разработчик" class="about-image" loading="lazy" />
+            <div class="about-text">
+              <p data-translate="about.text1">Мидл Roblox разработчик, специализирующийся на программировании. Обладаю навыками соло девелопинга Lua и опытом создания различных игровых механик и систем в Roblox Studio.</p>
+              <p data-translate="about.text2">Всегда стремлюсь к изучению новых техник и инструментов разработки, чтобы создавать увлекательные и качественные игровые проекты.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="fade-in">
+      <div class="container">
+        <div class="glass-card">
+          <h2 data-translate="skills.title">Навыки</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name" data-translate="skills.lua">Lua (Roblox)</span>
+                <span class="skill-percent" aria-label="90%">90%</span>
+              </div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-progress" data-width="90%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name" data-translate="skills.studio">Roblox Studio</span>
+                <span class="skill-percent" aria-label="85%">85%</span>
+              </div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-progress" data-width="85%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name" data-translate="skills.design">Game Design</span>
+                <span class="skill-percent" aria-label="80%">80%</span>
+              </div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-progress" data-width="80%"></div>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-header">
+                <span class="skill-name" data-translate="skills.uiux">UI/UX Design</span>
+                <span class="skill-percent" aria-label="75%">75%</span>
+              </div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-progress" data-width="75%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="fade-in">
+      <div class="container">
+        <div class="glass-card">
+          <h2 data-translate="portfolio.title">Портфолио</h2>
+          <div class="portfolio-grid">
+            <div class="portfolio-item">
+              <img src="Dimensional Showdown.png" alt="The Dimensional Showdown - Roblox игра" class="portfolio-image" loading="lazy" />
+              <div class="portfolio-content">
+                <h3 class="portfolio-title">
+                  <a href="https://www.roblox.com/games/117777430041647/The-Dimensional-Showdown" target="_blank" rel="noopener noreferrer">
+                    <span data-translate="portfolio.game">The Dimensional Showdown</span>
+                  </a>
+                </h3>
+                <p data-translate="portfolio.desc">Моя новая игра в Roblox, над которой сейчас работаю.</p>
+                <div class="portfolio-group" role="button" tabindex="0" onclick="window.open('https://www.roblox.com/communities/862464652/Inspirations-Studio#!/about', '_blank')">
+                  <strong data-translate="group-label">👥 Группа разработчиков:</strong>
+                  <a href="https://www.roblox.com/communities/862464652/Inspirations-Studio#!/about" target="_blank" rel="noopener noreferrer" class="group-link">
+                    <span data-translate="portfolio.group">Inspirations Studios</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="fade-in">
+      <div class="container">
+        <div class="glass-card">
+          <h2 data-translate="contact.title">Контакты</h2>
+          <p class="contact-text" data-translate="contact.text">Свяжитесь со мной для обсуждения ваших проектов!</p>
+          <div class="contact-grid">
+            <button class="contact-button email-btn" data-email="londe00srs@gmail.com" aria-label="Скопировать email">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <span>londe00srs@gmail.com</span>
+            </button>
+            <a href="https://discord.com/users/1030824778141028412" class="contact-button discord-btn" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-discord" aria-hidden="true"></i>
+              <span data-translate="contact.discord">Discord: londe00</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" data-translate="footer">© Londe00. Все права защищены.</div>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const currentYear = new Date().getFullYear();
+      
+      const translations = {
+        ru: {
+          'nav.services': 'Услуги',
+          'nav.about': 'Обо мне',
+          'nav.skills': 'Навыки',
+          'nav.portfolio': 'Портфолио',
+          'nav.contact': 'Контакты',
+          'services.title': 'Мои услуги',
+          'services.game': 'Разработка игр',
+          'services.game.desc': 'Полный цикл разработки Roblox игр от концепта до релиза с оптимизацией производительности',
+          'services.script': 'Скриптинг Lua',
+          'services.script.desc': 'Сложные игровые механики, системы монетизации и оптимизированный код',
+          'services.ui': 'UI/UX дизайн',
+          'services.ui.desc': 'Современные адаптивные интерфейсы с анимациями и интуитивной навигацией',
+          'about.title': 'Обо мне',
+          'about.text1': 'Мидл Roblox разработчик, специализирующийся на программировании. Обладаю навыками соло девелопинга Lua и опытом создания различных игровых механик и систем в Roblox Studio.',
+          'about.text2': 'Всегда стремлюсь к изучению новых техник и инструментов разработки, чтобы создавать увлекательные и качественные игровые проекты.',
+          'skills.title': 'Навыки',
+          'skills.lua': 'Lua (Roblox)',
+          'skills.studio': 'Roblox Studio',
+          'skills.design': 'Game Design',
+          'skills.uiux': 'UI/UX Design',
+          'portfolio.title': 'Портфолио',
+          'portfolio.game': 'The Dimensional Showdown',
+          'portfolio.desc': 'Моя новая игра в Roblox, над которой сейчас работаю.',
+          'portfolio.group': 'Inspirations Studios',
+          'group-label': '👥 Группа разработчиков:',
+          'contact.title': 'Контакты',
+          'contact.text': 'Свяжитесь со мной для обсуждения ваших проектов!',
+          'contact.discord': 'Discord: londe00',
+          'footer': `© ${currentYear} Londe00. Все права защищены.`,
+          'copy.success.ru': '✅ Скопировано!'
+        },
+        en: {
+          'nav.services': 'Services',
+          'nav.about': 'About',
+          'nav.skills': 'Skills',
+          'nav.portfolio': 'Portfolio',
+          'nav.contact': 'Contact',
+          'services.title': 'My Services',
+          'services.game': 'Game Development',
+          'services.game.desc': 'Full cycle Roblox game development from concept to release with performance optimization',
+          'services.script': 'Lua Scripting',
+          'services.script.desc': 'Complex game mechanics, monetization systems and optimized code',
+          'services.ui': 'UI/UX Design',
+          'services.ui.desc': 'Modern responsive interfaces with animations and intuitive navigation',
+          'about.title': 'About Me',
+          'about.text1': 'Middle Roblox developer specializing in programming. I have solo Lua development skills and experience creating various game mechanics and systems in Roblox Studio.',
+          'about.text2': 'I always strive to learn new development techniques and tools to create engaging and high-quality game projects.',
+          'skills.title': 'Skills',
+          'skills.lua': 'Lua (Roblox)',
+          'skills.studio': 'Roblox Studio',
+          'skills.design': 'Game Design',
+          'skills.uiux': 'UI/UX Design',
+          'portfolio.title': 'Portfolio',
+          'portfolio.game': 'The Dimensional Showdown',
+          'portfolio.desc': 'My new Roblox game that I am currently working on.',
+          'portfolio.group': 'Inspirations Studios',
+          'group-label': '👥 Developer Group:',
+          'contact.title': 'Contact',
+          'contact.text': 'Contact me to discuss your projects and ideas!',
+          'contact.discord': 'Discord: londe00',
+          'footer': `© ${currentYear} Londe00. All rights reserved.`,
+          'copy.success.en': '✅ Copied!'
+        }
+      };
+
+      const elements = {};
+      let currentLang = 'ru';
+
+      function init() {
+        cacheElements();
+        currentLang = localStorage.getItem('language') || detectLanguage();
+        setLanguage(currentLang);
+        setupEventListeners();
+        setupAnimations();
+      }
+
+      function cacheElements() {
+        elements.allNavLinks = document.querySelectorAll('.nav-link');
+        elements.sections = document.querySelectorAll('section');
+        elements.progressBar = document.getElementById('progressBar');
+        elements.mobileToggle = document.getElementById('mobileToggle');
+        elements.mobileMenu = document.getElementById('mobileMenu');
+        elements.mobileClose = document.getElementById('mobileClose');
+        elements.skillProgress = document.querySelectorAll('.skill-progress');
+        elements.fadeElements = document.querySelectorAll('.fade-in');
+        elements.langBtns = document.querySelectorAll('.lang-btn');
+        elements.translateElements = document.querySelectorAll('[data-translate]');
+        elements.emailBtn = document.querySelector('.email-btn');
+      }
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('language', lang);
+        
+        elements.translateElements.forEach(el => {
+          const key = el.dataset.translate;
+          if (translations[lang]?.[key]) {
+            el.textContent = translations[lang][key];
+          }
+        });
+        
+        elements.langBtns.forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        
+        updateActiveNav();
+      }
+
+      function detectLanguage() {
+        return (navigator.language || navigator.userLanguage || 'ru').toLowerCase().startsWith('ru') ? 'ru' : 'en';
+      }
+
+      function copyEmail(email) {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(email).then(() => showCopyFeedback(email)).catch(fallbackCopy);
+        } else {
+          fallbackCopy(email);
+        }
+      }
+
+      function fallbackCopy(email) {
+        const textArea = document.createElement('textarea');
+        textArea.value = email;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          document.execCommand('copy');
+        } finally {
+          document.body.removeChild(textArea);
+        }
+        showCopyFeedback(email);
+      }
+
+      function showCopyFeedback(email) {
+        const btn = elements.emailBtn;
+        const originalText = `<i class="fas fa-envelope" aria-hidden="true"></i><span>${email}</span>`;
+        const copyMessage = currentLang === 'ru' ?
+          translations.ru['copy.success.ru'] :
+          translations.en['copy.success.en'];
+        
+        btn.innerHTML = copyMessage;
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2200);
+      }
+
+      function updateActiveNav() {
+        const hash = window.location.hash || '#portfolio';
+        elements.allNavLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === hash);
+        });
+      }
+
+      function scrollToSection(targetId) {
+        const target = document.querySelector(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          window.location.hash = targetId;
+        }
+        closeMobileMenu();
+      }
+
+      function toggleMobileMenu() {
+        elements.mobileMenu.classList.toggle('active');
+        document.body.style.overflow = elements.mobileMenu.classList.contains('active') ? 'hidden' : '';
+      }
+
+      function closeMobileMenu() {
+        elements.mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      function setupAnimations() {
+        const updateProgressAndNav = () => {
+          const scrollPercent = Math.min(
+            (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100,
+            100
+          );
+          elements.progressBar.style.width = scrollPercent + '%';
+          updateActiveNav();
         };
 
-        
-        function translatePage(lang) {
-            document.querySelectorAll('[data-translate-key]').forEach(element => {
-                const key = element.dataset.translateKey;
-                if (translations[key] && translations[key][lang]) {
-                    
-                    element.innerHTML = translations[key][lang];
-                }
-            });
-            
-            localStorage.setItem('selectedLanguage', lang);
-        }
+        const animateSkills = () => {
+          elements.skillProgress.forEach((bar, i) => {
+            setTimeout(() => {
+              bar.style.width = bar.dataset.width;
+            }, i * 200);
+          });
+        };
 
-        
-        function setActiveButton(lang) {
-            translateButtons.forEach(button => {
-                button.classList.toggle('active', button.dataset.lang === lang);
-            });
-        }
+        const observerOptions = {
+          threshold: 0.15,
+          rootMargin: '0px 0px -80px 0px'
+        };
 
-        
-        translateButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const lang = this.dataset.lang;
-                translatePage(lang);
-                setActiveButton(lang);
-            });
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              if (entry.target.id === 'skills') {
+                setTimeout(animateSkills, 500);
+              }
+            }
+          });
+        }, observerOptions);
+
+        elements.fadeElements.forEach(el => observer.observe(el));
+        window.addEventListener('scroll', updateProgressAndNav);
+        updateProgressAndNav();
+      }
+
+      function setupEventListeners() {
+        elements.langBtns.forEach(btn => {
+          btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
         });
 
-        
-        emailLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            navigator.clipboard.writeText(this.textContent.trim())
-                .then(() => {
-                    copyMessage.classList.add('show');
-                    
-                    setTimeout(() => {
-                        copyMessage.classList.remove('show');
-                    }, 2000);
-                })
-                .catch(err => {
-                    console.error('Не удалось скопировать: ', err);
-                });
+        if (elements.emailBtn) {
+          elements.emailBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            copyEmail(elements.emailBtn.dataset.email);
+          });
+        }
+
+        elements.allNavLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            scrollToSection(href);
+          });
         });
 
-        
-        const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
-        translatePage(savedLang);
-        setActiveButton(savedLang);
-    });
-    </script>
+        elements.mobileToggle?.addEventListener('click', toggleMobileMenu);
+        elements.mobileClose?.addEventListener('click', closeMobileMenu);
+
+        document.addEventListener('click', (e) => {
+          if (!elements.mobileMenu?.contains(e.target) &&
+              !elements.mobileToggle?.contains(e.target) &&
+              elements.mobileMenu?.classList.contains('active')) {
+            closeMobileMenu();
+          }
+        });
+
+        document.querySelectorAll('.service-item, .portfolio-group').forEach(item => {
+          item.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              item.click();
+            }
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
 </body>
-
 </html>
+
