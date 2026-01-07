@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Londe00 ● Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #bbb;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        header {
+            background: #1e1e1e;
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header #branding h1 {
+            font-size: 2em;
+            font-weight: 650;
+        }
+
+        header nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        header nav li {
+            display: inline;
+            margin-left: 30px;
+        }
+
+        main {
+            padding: 60px 0;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        section h2 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #fff;
+        }
+
+        #about .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        #about .about-content img {
+            width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #about .about-content img:hover {
+            transform: scale(0.95);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        #about .about-content .about-text {
+            flex: 1;
+        }
+
+        #about .about-content p {
+            font-size: 1.1em;
+            color: #eee;
+        }
+
+        #portfolio .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        #portfolio .portfolio-item {
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #portfolio .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #portfolio .portfolio-item img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        #portfolio .portfolio-item h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        #portfolio .portfolio-item p {
+            font-size: 1.1em;
+            color: #eee;
+        }
+
+        #contact {
+            background: #1e1e1e;
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .email-link {
+            color: #4cacaf;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.3em;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s ease;
+        }
+
+        .animated-gradient {
+            background: linear-gradient(45deg, #4CAF50, #02c7f8c9, #9C27B0, #E91E63);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        footer {
+            background: #1e1e1e;
+            color: #888;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.9em;
+        }
+
+        .translate-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 5px;
+        }
+
+        .translate-button {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid #4cacaf;
+            color: #fff;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .translate-button:hover {
+            background-color: #4cacaf;
+            color: #000;
+        }
+
+        .translate-button.active {
+            background-color: #4cacaf;
+            color: #000;
+        }
+        
+        
+        #copy-message {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #1e1e1e;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: 1px solid #4cacaf;
+            z-index: 1001;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            
+            
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        #copy-message.show {
+            
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .container { width: 95%; }
+            header .container { flex-direction: column; align-items: flex-start; }
+            header #branding { margin-bottom: 15px; }
+            header nav li { margin-left: 15px; }
+            #about .about-content { flex-direction: column; text-align: center; }
+            #about .about-content img { width: 200px; margin-bottom: 20px; }
+            #portfolio .portfolio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1 class="animated-gradient">● Londe00</h1>
+            </div>
+            <nav>
+                <ul>
+                    
+                    <li><a href="#about" data-translate-key="nav_about">● Обо мне</a></li>
+                    <li><a href="#portfolio" data-translate-key="nav_portfolio">● Портфолио</a></li>
+                    <li><a href="#contact" data-translate-key="nav_contact">● Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="container">
+                <h2 data-translate-key="about_title">● Обо мне</h2>
+                <div class="about-content">
+                    <img src="Profile.png" alt="Моя фотография" class="fade-in image">
+                    <div class="about-text">
+                        <p data-translate-key="about_text">● Я мидл Roblox разработчик, специализирующийся на программировании. Обладаю навыками соло девелопинга Lua и опытом создания различных игровых механик и систем в Roblox Studio. Я всегда стремлюсь к изучению новых техник и инструментов разработки, чтобы создавать увлекательные и качественные игровые проекты. В моем портфолио вы найдете примеры моих работ, демонстрирующие мои навыки и умение воплощать идеи в реальность.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <h2 data-translate-key="portfolio_title">● Портфолио</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="Dimensional Showdown.png" alt="The Dimensional Showdown" style="width: 20%;" class="fade-in image">
+                        <h3><a href="https://www.roblox.com/games/117777430041647/The-Dimensional-Showdown" target="_blank">● The Dimensional Showdown</a></h3>
+                        <p data-translate-key="portfolio_project_desc">● Моя новая игра в Roblox, над которой я сейчас работаю.</p>
+                        <p><span data-translate-key="portfolio_dev_group">● Группа Разработчиков: </span><a href="https://www.roblox.com/communities/862464652/Inspirations-Studio#!/about" target="_blank">Inspirations Studios <img src="Inspirations Studios.png" alt="Inspirations Studios Logo" style="width: 20px; vertical-align: middle;"></a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 data-translate-key="contact_title">● Контакты</h2>
+                <p data-translate-key="contact_prompt">● Свяжитесь со мной для обсуждения ваших проектов и идей!</p>
+                <a href="mailto:londe00srs@gmail.com" class="email-link" id="email-link">londe00srs@gmail.com</a>
+                <p data-translate-key="contact_discord">● Discord: londe00</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container" data-translate-key="footer_copyright">
+            &copy; 2026 Londe00. Все права защищены.
+        </div>
+    </footer>
+
+    
+    <div id="copy-message" data-translate-key="copy_message_text">● Почта скопирована!</div>
+
+    
+    <div class="translate-buttons">
+        <button class="translate-button" data-lang="en" data-translate-key="lang_en">● English</button>
+        <button class="translate-button active" data-lang="ru" data-translate-key="lang_ru">● Русский</button>
+    </div>
+
+    <script>
+    
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const emailLink = document.getElementById('email-link');
+        const copyMessage = document.getElementById('copy-message');
+        const translateButtons = document.querySelectorAll('.translate-button');
+
+        // Словарь с переводами. Просто, быстро и надежно.
+        const translations = {
+            nav_about: {
+                ru: '● Обо мне',
+                en: '● About Me'
+            },
+            nav_portfolio: {
+                ru: '● Портфолио',
+                en: '● Portfolio'
+            },
+            nav_contact: {
+                ru: '● Контакты',
+                en: '● Contacts'
+            },
+            about_title: {
+                ru: '● Обо мне',
+                en: '● About Me'
+            },
+            about_text: {
+                ru: '● Я мидл Roblox разработчик, специализирующийся на программировании. Обладаю навыками соло девелопинга Lua и опытом создания различных игровых механик и систем в Roblox Studio. Я всегда стремлюсь к изучению новых техник и инструментов разработки, чтобы создавать увлекательные и качественные игровые проекты. В моем портфолио вы найдете примеры моих работ, демонстрирующие мои навыки и умение воплощать идеи в реальность.',
+                en: '● I am a middle Roblox developer specializing in programming. I have skills in solo Lua development and experience in creating various game mechanics and systems in Roblox Studio. I always strive to learn new development techniques and tools to create engaging and high-quality game projects. In my portfolio, you will find examples of my work that demonstrate my skills and ability to bring ideas to life.'
+            },
+            portfolio_title: {
+                ru: '● Портфолио',
+                en: '● Portfolio'
+            },
+            portfolio_project_desc: {
+                ru: '● Моя новая игра в Roblox, над которой я сейчас работаю.',
+                en: '● My new game in Roblox that I am currently working on.'
+            },
+            portfolio_dev_group: {
+                ru: '● Группа Разработчиков: ',
+                en: '● Developer Group: '
+            },
+            contact_title: {
+                ru: '● Контакты',
+                en: '● Contacts'
+            },
+            contact_prompt: {
+                ru: '● Свяжитесь со мной для обсуждения ваших проектов и идей!',
+                en: '● Contact me to discuss your projects and ideas!'
+            },
+            contact_discord: {
+                ru: '● Discord: londe00',
+                en: '● Discord: londe00'
+            },
+            footer_copyright: {
+                ru: '&copy; 2026 Londe00. Все права защищены.',
+                en: '&copy; 2026 Londe00. All rights reserved.'
+            },
+            copy_message_text: {
+                ru: '● Почта скопирована!',
+                en: '● Email copied!'
+            },
+            lang_en: {
+                ru: '● English',
+                en: '● English'
+            },
+            lang_ru: {
+                ru: '● Русский',
+                en: '● Russian'
+            }
+        };
+
+        
+        function translatePage(lang) {
+            document.querySelectorAll('[data-translate-key]').forEach(element => {
+                const key = element.dataset.translateKey;
+                if (translations[key] && translations[key][lang]) {
+                    
+                    element.innerHTML = translations[key][lang];
+                }
+            });
+            
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        
+        function setActiveButton(lang) {
+            translateButtons.forEach(button => {
+                button.classList.toggle('active', button.dataset.lang === lang);
+            });
+        }
+
+        
+        translateButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const lang = this.dataset.lang;
+                translatePage(lang);
+                setActiveButton(lang);
+            });
+        });
+
+        
+        emailLink.addEventListener('click', function(event) {
+            event.preventDefault();
+            navigator.clipboard.writeText(this.textContent.trim())
+                .then(() => {
+                    copyMessage.classList.add('show');
+                    
+                    setTimeout(() => {
+                        copyMessage.classList.remove('show');
+                    }, 2000);
+                })
+                .catch(err => {
+                    console.error('Не удалось скопировать: ', err);
+                });
+        });
+
+        
+        const savedLang = localStorage.getItem('selectedLanguage') || 'ru';
+        translatePage(savedLang);
+        setActiveButton(savedLang);
+    });
+    </script>
+</body>
+</html>
