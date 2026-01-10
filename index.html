@@ -1,7 +1,13 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Портфолио Roblox-разработчика Londe00. Разработка игр, скриптинг Lua, UI/UX дизайн." />
+  <meta name="keywords" content="Roblox, Lua, разработчик, портфолио, игры, скриптинг, дизайн" />
+  <meta property="og:title" content="Londe00 ● Portfolio | Roblox Developer" />
+  <meta property="og:description" content="Портфолио Roblox-разработчика Londe00. Разработка игр, скриптинг Lua, UI/UX дизайн." />
+  <meta property="og:type" content="website" />
   <title>Londe00 ● Portfolio | Roblox Developer</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -16,19 +22,11 @@
       --shadow-neon: 0 0 30px rgba(48, 207, 208, 0.4);
       --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-
-
-
-
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
-
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
@@ -37,9 +35,6 @@
       overflow-x: hidden;
       position: relative;
     }
-
-
-
     .bg-animation {
       position: fixed;
       top: 0;
@@ -52,22 +47,10 @@
         radial-gradient(circle at 80% 20%, rgba(51, 8, 103, 0.15) 0%, transparent 50%);
       animation: bgFloat 30s ease-in-out infinite;
     }
-
-
-
-
-
-
     @keyframes bgFloat {
       0%, 100% { transform: scale(1) rotate(0deg); }
       50% { transform: scale(1.03) rotate(180deg); }
     }
-
-
-
-
-
-
     .noise-overlay {
       position: fixed;
       top: 0;
@@ -86,22 +69,10 @@
       background-size: 200px 200px;
       animation: noiseMove 20s linear infinite;
     }
-
-
-
-
-
-
     @keyframes noiseMove {
       0% { transform: translate(0px, 0px); }
       100% { transform: translate(20px, 20px); }
     }
-
-
-
-
-
-
     .progress-container {
       position: fixed;
       top: 0;
@@ -111,12 +82,6 @@
       background: rgba(255,255,255,0.08);
       z-index: 1000;
     }
-
-
-
-
-
-
     .progress-bar {
       height: 100%;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -124,23 +89,11 @@
       transition: width 0.3s ease;
       box-shadow: 0 0 15px var(--primary);
     }
-
-
-
-
-
-
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
     }
-
-
-
-
-
-
     header {
       background: rgba(30, 30, 30, 0.95);
       border-bottom: var(--glass-border);
@@ -150,12 +103,6 @@
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
     }
-
-
-
-
-
-
     @supports not (backdrop-filter: blur(25px)) {
       header,
       .glass-card,
@@ -165,24 +112,12 @@
         border: 1px solid rgba(255,255,255,0.2);
       }
     }
-
-
-
-
-
-
     .nav-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 0;
     }
-
-
-
-
-
-
     .logo {
       font-size: 2.2rem;
       font-weight: 800;
@@ -191,35 +126,17 @@
       background-clip: text;
       color: transparent;
     }
-
-
-
-
-
-
     .nav-right {
       display: flex;
       align-items: center;
       gap: 2rem;
     }
-
-
-
-
-
-
     .nav-links {
       display: flex;
       list-style: none;
       gap: 0.5rem;
       padding: 0.5rem 0;
     }
-
-
-
-
-
-
     .nav-links a {
       position: relative;
       display: flex;
@@ -238,12 +155,6 @@
       transition: var(--transition);
       overflow: hidden;
     }
-
-
-
-
-
-
     .nav-links a::before {
       content: '';
       position: absolute;
@@ -254,32 +165,14 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
       transition: left 0.6s ease;
     }
-
-
-
-
-
-
     .nav-links a:hover::before,
     .nav-links a.active::before {
       left: 100%;
     }
-
-
-
-
-
-
     .nav-links a i {
       font-size: 1.1rem;
       transition: transform 0.3s ease;
     }
-
-
-
-
-
-
     .nav-links a:hover {
       color: #fff;
       background: rgba(255, 255, 255, 0.15);
@@ -287,21 +180,9 @@
       box-shadow: 0 10px 30px rgba(48, 207, 208, 0.3);
       transform: translateY(-2px);
     }
-
-
-
-
-
-
     .nav-links a:hover i {
       transform: scale(1.1);
     }
-
-
-
-
-
-
     .nav-links a.active {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #fff !important;
@@ -309,22 +190,10 @@
       box-shadow: 0 8px 25px rgba(48, 207, 208, 0.4);
       transform: translateY(-1px);
     }
-
-
-
-
-
-
     .lang-toggle {
       display: flex;
       gap: 0.25rem;
     }
-
-
-
-
-
-
     .lang-btn {
       padding: 0.5rem 1rem;
       border: 2px solid var(--primary);
@@ -337,12 +206,6 @@
       font-size: 0.9rem;
       min-width: 40px;
     }
-
-
-
-
-
-
     .lang-btn.active,
     .lang-btn:hover {
       background: var(--primary);
@@ -350,12 +213,6 @@
       transform: translateY(-2px);
       box-shadow: var(--shadow-neon);
     }
-
-
-
-
-
-
     .mobile-toggle {
       display: none;
       background: rgba(255,255,255,0.1);
@@ -368,43 +225,19 @@
       transition: var(--transition);
       backdrop-filter: blur(20px);
     }
-
-
-
-
-
-
     .mobile-toggle:hover {
       background: var(--primary);
       color: #fff;
       transform: scale(1.05);
       box-shadow: var(--shadow-neon);
     }
-
-
-
-
-
-
     main {
       padding: 5rem 0;
     }
-
-
-
-
-
-
     section {
       margin-bottom: 6rem;
       position: relative;
     }
-
-
-
-
-
-
     h2 {
       font-size: 3.5rem;
       text-align: center;
@@ -416,12 +249,6 @@
       font-weight: 800;
       position: relative;
     }
-
-
-
-
-
-
     .glass-card {
       background: rgba(30, 30, 30, 0.95);
       backdrop-filter: blur(30px);
@@ -435,12 +262,6 @@
       position: relative;
       overflow: hidden;
     }
-
-
-
-
-
-
     .glass-card::before {
       content: '';
       position: absolute;
@@ -454,53 +275,23 @@
       transition: var(--transition);
       z-index: 0;
     }
-
-
-
-
-
-
     .glass-card:hover::before {
       opacity: 1;
     }
-
-
-
-
-
-
     .glass-card > * {
       position: relative;
       z-index: 1;
     }
-
-
-
-
-
-
     .glass-card:hover {
       transform: translateY(-12px);
       box-shadow: var(--shadow-neon);
     }
-
-
-
-
-
-
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2.5rem;
       margin-top: 3rem;
     }
-
-
-
-
-
-
     .service-item {
       padding: 3rem 2rem;
       background: rgba(20, 20, 20, 0.8);
@@ -512,12 +303,6 @@
       position: relative;
       overflow: hidden;
     }
-
-
-
-
-
-
     .service-item::before {
       content: '';
       position: absolute;
@@ -528,32 +313,14 @@
       background: linear-gradient(90deg, transparent, rgba(48, 207, 208, 0.2), transparent);
       transition: left 0.7s;
     }
-
-
-
-
-
-
     .service-item:hover::before {
       left: 100%;
     }
-
-
-
-
-
-
     .service-item:hover {
       border-color: var(--primary);
       transform: translateY(-12px);
       box-shadow: var(--shadow-neon);
     }
-
-
-
-
-
-
     .service-icon {
       font-size: 4.5rem;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -563,36 +330,18 @@
       margin-bottom: 1.5rem;
       display: block;
     }
-
-
-
-
-
-
     .service-item h3 {
       font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 1rem;
       color: #fff;
     }
-
-
-
-
-
-
     .about-content {
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 4rem;
       align-items: center;
     }
-
-
-
-
-
-
     .about-image {
       width: 100%;
       max-width: 400px;
@@ -600,51 +349,21 @@
       box-shadow: var(--shadow);
       transition: var(--transition);
     }
-
-
-
-
-
-
     .about-image:hover {
       transform: scale(1.02);
     }
-
-
-
-
-
-
     .about-text {
       font-size: 1.2rem;
       line-height: 1.9;
     }
-
-
-
-
-
-
     .about-text p {
       margin-bottom: 1.5rem;
     }
-
-
-
-
-
-
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 2.5rem;
     }
-
-
-
-
-
-
     .skill-item {
       padding: 2rem;
       background: rgba(20, 20, 20, 0.85);
@@ -652,55 +371,25 @@
       border: 1px solid rgba(255,255,255,0.1);
       transition: var(--transition);
     }
-
-
-
-
-
-
     .skill-item:hover {
       transform: translateY(-8px);
       box-shadow: var(--shadow-neon);
     }
-
-
-
-
-
-
     .skill-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
     }
-
-
-
-
-
-
     .skill-name {
       font-weight: 700;
       font-size: 1.2rem;
     }
-
-
-
-
-
-
     .skill-percent {
       font-weight: 800;
       color: var(--primary);
       font-size: 1.1rem;
     }
-
-
-
-
-
-
     .skill-bar {
       width: 100%;
       height: 14px;
@@ -708,12 +397,6 @@
       border-radius: 10px;
       overflow: hidden;
     }
-
-
-
-
-
-
     .skill-progress {
       height: 100%;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -722,24 +405,11 @@
       transition: width 2.5s cubic-bezier(0.4, 0, 0.2, 1);
       box-shadow: 0 0 20px var(--primary);
     }
-
-
-
-
-
-
-   
     .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
       gap: 2.5rem;
     }
-
-
-
-
-
-
     .portfolio-item {
       border-radius: 5.5px;
       overflow: hidden;
@@ -747,13 +417,6 @@
       transition: var(--transition);
       position: relative;
     }
-
-
-
-
-
-
-   
     .portfolio-item.profile-highlight {
       border: 4px solid var(--primary) !important;
       box-shadow:
@@ -762,12 +425,6 @@
       animation: profileGlow 2s ease-in-out infinite alternate;
       z-index: 2;
     }
-
-
-
-
-
-
     .portfolio-item.profile-highlight:hover {
       transform: translateY(-20px) !important;
       box-shadow:
@@ -776,12 +433,6 @@
         var(--shadow-neon) !important;
       border-color: #fff !important;
     }
-
-
-
-
-
-
     @keyframes profileGlow {
       0% {
         box-shadow:
@@ -795,22 +446,10 @@
           var(--shadow);
       }
     }
-
-
-
-
-
-
     .portfolio-item:hover {
       transform: translateY(-20px);
       box-shadow: var(--shadow-neon);
     }
-
-
-
-
-
-
     .portfolio-image {
       width: 100%;
       height: 280px;
@@ -818,64 +457,28 @@
       transition: var(--transition);
       display: block;
     }
-
-
-
-
-
-
     .portfolio-item:hover .portfolio-image {
       transform: scale(1.05);
     }
-
-
-
-
-
-
     .portfolio-content {
       padding: 2rem;
       background: rgba(30, 30, 30, 0.95);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
-
-
-
-
-
-
     .portfolio-title {
       font-size: 1.5rem;
       margin-bottom: 1rem;
     }
-
-
-
-
-
-
     .portfolio-title a {
       color: #fff;
       text-decoration: none;
       font-weight: 700;
       transition: var(--transition);
     }
-
-
-
-
-
-
     .portfolio-title a:hover {
       color: var(--primary);
     }
-
-
-
-
-
-
     .portfolio-group {
       margin-top: 2rem;
       padding: 1.5rem 2rem;
@@ -888,12 +491,6 @@
       overflow: hidden;
       text-decoration: none;
     }
-
-
-
-
-
-
     .portfolio-group::before {
       content: '';
       position: absolute;
@@ -904,32 +501,14 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
       transition: left 0.6s;
     }
-
-
-
-
-
-
     .portfolio-group:hover::before {
       left: 100%;
     }
-
-
-
-
-
-
     .portfolio-group:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-neon);
       border-color: var(--primary);
     }
-
-
-
-
-
-
     .portfolio-group strong {
       color: var(--primary);
       font-weight: 800;
@@ -937,12 +516,6 @@
       display: block;
       margin-bottom: 0.75rem;
     }
-
-
-
-
-
-
     .portfolio-group-link {
       color: #fff;
       text-decoration: none;
@@ -953,24 +526,12 @@
       background-clip: text;
       color: transparent;
     }
-
-
-
-
-
-
     .contact-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2.5rem;
       justify-items: center;
     }
-
-
-
-
-
-
     .contact-button {
       display: inline-flex;
       align-items: center;
@@ -993,12 +554,6 @@
       overflow: hidden;
       text-decoration: none;
     }
-
-
-
-
-
-
     .contact-button::before {
       content: '';
       position: absolute;
@@ -1009,114 +564,48 @@
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
       transition: left 0.6s;
     }
-
-
-
-
-
-
     .contact-button:hover::before {
       left: 100%;
     }
-
-
-
-
-
-
     .contact-button:hover:not(.copied) {
       transform: translateY(-5px);
       box-shadow: var(--shadow-neon);
     }
-
-
-
-
-
-
     .contact-button.copied {
       background: linear-gradient(135deg, #00C851, #007E33);
       animation: pulse 0.7s ease;
     }
-
-
-
-
-
-
     @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.06); }
       100% { transform: scale(1); }
     }
-
-
-
-
-
-
     .telegram-btn {
       background: linear-gradient(135deg, #0088cc, #229ED9) !important;
     }
-
-
-
-
-
-
     .discord-btn {
       background: linear-gradient(135deg, #5865F2, #7289DA) !important;
     }
-
-
-
-
-
-
     .contact-text {
       text-align: center;
       font-size: 1.3rem;
       margin-bottom: 4rem;
       opacity: 0.9;
     }
-
-
-
-
-
-
     footer {
       text-align: center;
       padding: 4rem 0;
       opacity: 0.9;
     }
-
-
-
-
-
-
     .fade-in {
       opacity: 0;
       transform: translateY(40px);
       transition: all 1s ease;
     }
-
-
-
-
-
-
     .fade-in.visible {
       opacity: 1;
       transform: translateY(0);
     }
-
-
-
-
-
-
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -1131,16 +620,9 @@
       padding: 6rem 2.5rem 2.5rem;
       transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-
-
-
-
-
     .mobile-menu.active {
       right: 0;
     }
-   
     .mobile-menu-close {
       position: absolute;
       top: 2rem;
@@ -1152,43 +634,19 @@
       cursor: pointer;
       transition: var(--transition);
     }
-
-
-
-
-
-
     .mobile-menu-close:hover {
       color: var(--primary);
       transform: rotate(90deg);
     }
-
-
-
-
-
-
     .mobile-menu .nav-links {
       flex-direction: column;
       gap: 1rem;
       margin-bottom: 2rem;
     }
-
-
-
-
-
-
     .mobile-menu .nav-links a {
       justify-content: flex-start;
       padding: 1.25rem 2rem;
     }
-
-
-
-
-
-
     @media (max-width: 768px) {
       .mobile-toggle { display: block; }
       .nav-links { display: none; }
@@ -1211,40 +669,16 @@
         min-width: 36px;
       }
     }
-
-
-
-
-
-
     ::-webkit-scrollbar {
       width: 12px;
     }
-
-
-
-
-
-
     ::-webkit-scrollbar-track {
       background: rgba(255,255,255,0.08);
     }
-
-
-
-
-
-
     ::-webkit-scrollbar-thumb {
       background: linear-gradient(var(--primary), var(--secondary));
       border-radius: 8px;
     }
-
-
-
-
-
-
     ::-webkit-scrollbar-thumb:hover {
       background: var(--primary);
       box-shadow: var(--shadow-neon);
@@ -1254,21 +688,9 @@
 <body>
   <div class="bg-animation"></div>
   <div class="noise-overlay"></div>
-
-
-
-
-
-
   <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
   </div>
-
-
-
-
-
-
   <header>
     <div class="container">
       <div class="nav-container">
@@ -1290,12 +712,6 @@
       </div>
     </div>
   </header>
-
-
-
-
-
-
   <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Навигационное меню">
     <button class="mobile-menu-close" id="mobileClose" aria-label="Закрыть меню">&times;</button>
     <ul class="nav-links" id="mobileNavLinks">
@@ -1310,12 +726,6 @@
       <button class="lang-btn" data-lang="en">EN</button>
     </div>
   </div>
-
-
-
-
-
-
   <main>
     <section id="services" class="fade-in">
       <div class="container">
@@ -1341,12 +751,6 @@
         </div>
       </div>
     </section>
-
-
-
-
-
-
     <section id="about" class="fade-in">
       <div class="container">
         <div class="glass-card">
@@ -1361,12 +765,6 @@
         </div>
       </div>
     </section>
-
-
-
-
-
-
     <section id="skills" class="fade-in">
       <div class="container">
         <div class="glass-card">
@@ -1395,8 +793,8 @@
                 <span class="skill-name" data-translate="skills.design">Game Design</span>
                 <span class="skill-percent" aria-label="95.1%">95.1%</span>
               </div>
-              <div class="skill-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-                <div class="skill-progress" data-width="80%"></div>
+              <div class="skill-bar" role="progressbar" aria-valuenow="95.1" aria-valuemin="0" aria-valuemax="100">
+                <div class="skill-progress" data-width="95.1%"></div>
               </div>
             </div>
             <div class="skill-item">
@@ -1404,7 +802,7 @@
                 <span class="skill-name" data-translate="skills.uiux">UI/UX Design</span>
                 <span class="skill-percent" aria-label="65.4%">65.4%</span>
               </div>
-              <div class="skill-bar" role="progressbar" aria-valuenow="65.4%" aria-valuemin="0" aria-valuemax="100">
+              <div class="skill-bar" role="progressbar" aria-valuenow="65.4" aria-valuemin="0" aria-valuemax="100">
                 <div class="skill-progress" data-width="65.4%"></div>
               </div>
             </div>
@@ -1412,13 +810,6 @@
         </div>
       </div>
     </section>
-
-
-
-
-
-
-   
     <section id="portfolio" class="fade-in">
       <div class="container">
         <div class="glass-card">
@@ -1445,12 +836,6 @@
         </div>
       </div>
     </section>
-
-
-
-
-
-
     <section id="contact" class="fade-in">
       <div class="container">
         <div class="glass-card">
@@ -1459,7 +844,7 @@
           <div class="contact-grid">
             <a href="https://t.me/Londe0k" class="contact-button telegram-btn" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-telegram-plane" aria-hidden="true"></i>
-              <span data-translate="contact.telegram">@YOUR_TELEGRAM_USERNAME</span>
+              <span data-translate="contact.telegram">@Londe0k</span>
             </a>
             <a href="https://discord.com/users/1030824778141028412" class="contact-button discord-btn" target="_blank" rel="noopener noreferrer">
               <i class="fab fa-discord" aria-hidden="true"></i>
@@ -1470,30 +855,12 @@
       </div>
     </section>
   </main>
-
-
-
-
-
-
   <footer>
     <div class="container" data-translate="footer">© Londe00. Все права защищены.</div>
   </footer>
-
-
-
-
-
-
   <script>
     (function() {
       'use strict';
-
-
-
-
-
-
       const currentYear = new Date().getFullYear();
       const translations = {
         ru: {
@@ -1561,20 +928,8 @@
           'footer': `© ${currentYear} Londe00. All rights reserved.`
         }
       };
-
-
-
-
-
-
       const elements = {};
       let currentLang = 'ru';
-
-
-
-
-
-
       function init() {
         cacheElements();
         currentLang = localStorage.getItem('language') || detectLanguage();
@@ -1582,12 +937,6 @@
         setupEventListeners();
         setupAnimations();
       }
-
-
-
-
-
-
       function cacheElements() {
         elements.allNavLinks = document.querySelectorAll('.nav-link');
         elements.sections = document.querySelectorAll('section');
@@ -1600,56 +949,29 @@
         elements.langBtns = document.querySelectorAll('.lang-btn');
         elements.translateElements = document.querySelectorAll('[data-translate]');
       }
-
-
-
-
-
-
       function setLanguage(lang) {
         currentLang = lang;
         localStorage.setItem('language', lang);
-       
         elements.translateElements.forEach(el => {
           const key = el.dataset.translate;
           if (translations[lang]?.[key]) {
             el.textContent = translations[lang][key];
           }
         });
-       
         elements.langBtns.forEach(btn => {
           btn.classList.toggle('active', btn.dataset.lang === lang);
         });
-       
         updateActiveNav();
       }
-
-
-
-
-
-
       function detectLanguage() {
         return (navigator.language || navigator.userLanguage || 'ru').toLowerCase().startsWith('ru') ? 'ru' : 'en';
       }
-
-
-
-
-
-
       function updateActiveNav() {
         const hash = window.location.hash || '#portfolio';
         elements.allNavLinks.forEach(link => {
           link.classList.toggle('active', link.getAttribute('href') === hash);
         });
       }
-
-
-
-
-
-
       function scrollToSection(targetId) {
         const target = document.querySelector(targetId);
         if (target) {
@@ -1658,32 +980,14 @@
         }
         closeMobileMenu();
       }
-
-
-
-
-
-
       function toggleMobileMenu() {
         elements.mobileMenu.classList.toggle('active');
         document.body.style.overflow = elements.mobileMenu.classList.contains('active') ? 'hidden' : '';
       }
-
-
-
-
-
-
       function closeMobileMenu() {
         elements.mobileMenu.classList.remove('active');
         document.body.style.overflow = '';
       }
-
-
-
-
-
-
       function setupAnimations() {
         const updateProgressAndNav = () => {
           const scrollPercent = Math.min(
@@ -1693,12 +997,6 @@
           elements.progressBar.style.width = scrollPercent + '%';
           updateActiveNav();
         };
-
-
-
-
-
-
         const animateSkills = () => {
           elements.skillProgress.forEach((bar, i) => {
             setTimeout(() => {
@@ -1706,22 +1004,10 @@
             }, i * 200);
           });
         };
-
-
-
-
-
-
         const observerOptions = {
           threshold: 0.15,
           rootMargin: '0px 0px -80px 0px'
         };
-
-
-
-
-
-
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -1732,32 +1018,14 @@
             }
           });
         }, observerOptions);
-
-
-
-
-
-
         elements.fadeElements.forEach(el => observer.observe(el));
         window.addEventListener('scroll', updateProgressAndNav);
         updateProgressAndNav();
       }
-
-
-
-
-
-
       function setupEventListeners() {
         elements.langBtns.forEach(btn => {
           btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
         });
-
-
-
-
-
-
         elements.allNavLinks.forEach(link => {
           link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -1765,20 +1033,8 @@
             scrollToSection(href);
           });
         });
-
-
-
-
-
-
         elements.mobileToggle?.addEventListener('click', toggleMobileMenu);
         elements.mobileClose?.addEventListener('click', closeMobileMenu);
-
-
-
-
-
-
         document.addEventListener('click', (e) => {
           if (!elements.mobileMenu?.contains(e.target) &&
               !elements.mobileToggle?.contains(e.target) &&
@@ -1786,13 +1042,6 @@
             closeMobileMenu();
           }
         });
-
-
-
-
-
-
-       
         document.querySelectorAll('.portfolio-group').forEach(item => {
           item.addEventListener('click', () => {
             const link = item.querySelector('a');
@@ -1807,12 +1056,6 @@
             }
           });
         });
-
-
-
-
-
-
         document.querySelectorAll('.service-item').forEach(item => {
           item.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
@@ -1821,8 +1064,6 @@
           });
         });
       }
-
-
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
       } else {
