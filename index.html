@@ -734,6 +734,186 @@
       background: var(--primary);
       box-shadow: var(--shadow-neon);
     }
+
+    /* AI Chatbot Styles */
+    .ai-chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      font-family: 'Poppins', sans-serif;
+    }
+    .ai-chatbot-toggle {
+      width: 60px;
+      height: 60px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-neon);
+      transition: var(--transition);
+      border: none;
+      outline: none;
+      color: white;
+      font-size: 24px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1001;
+    }
+    .ai-chatbot-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(48, 207, 208, 0.8);
+    }
+    .ai-chatbot-popup {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      width: 320px;
+      background: var(--glass-bg);
+      border: var(--glass-border);
+      border-radius: 15px;
+      padding: 0;
+      display: none;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.3s ease;
+      overflow: hidden;
+      max-height: 500px;
+      display: flex;
+      flex-direction: column;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .ai-chatbot-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      background: rgba(48, 207, 208, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .ai-chatbot-title {
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .ai-chatbot-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0 5px;
+      transition: var(--transition);
+    }
+    .ai-chatbot-close:hover {
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+    .ai-chatbot-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: rgba(20, 20, 20, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ai-chatbot-message {
+      max-width: 80%;
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+      animation: messageFade 0.3s ease;
+    }
+    @keyframes messageFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .ai-chatbot-message.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, rgba(51, 8, 103, 0.5), rgba(48, 207, 208, 0.5));
+      border: 1px solid var(--secondary);
+      color: white;
+    }
+    .ai-chatbot-message.bot {
+      align-self: flex-start;
+      background: linear-gradient(135deg, rgba(48, 207, 208, 0.3), rgba(51, 8, 103, 0.3));
+      border: 1px solid var(--primary);
+      color: white;
+    }
+    .roblox-profile-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(20, 20, 20, 0.7);
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(48, 207, 208, 0.3);
+    }
+    .roblox-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 8px;
+      object-fit: cover;
+      background: rgba(20, 20, 20, 0.5);
+    }
+    .roblox-info h4 {
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .roblox-info p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.8rem;
+    }
+    .contact-form {
+      margin-top: 15px;
+      padding: 12px;
+      background: rgba(20, 20, 20, 0.7);
+      border-radius: 12px;
+      border: 1px solid rgba(48, 207, 208, 0.3);
+    }
+    .contact-form input {
+      width: 100%;
+      padding: 8px 12px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(30, 30, 30, 0.8);
+      color: white;
+      font-size: 0.9rem;
+    }
+    .contact-form input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .contact-form button {
+      width: 100%;
+      padding: 8px;
+      background: var(--primary);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .contact-form button:hover {
+      background: rgba(48, 207, 208, 0.8);
+    }
+    @media (max-width: 768px) {
+      .ai-chatbot-popup {
+        width: 280px;
+        max-height: 400px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -913,6 +1093,40 @@
   <footer>
     <div class="container" data-translate="footer">© Londe00. Все права защищены.</div>
   </footer>
+
+  <!-- AI Chatbot -->
+  <div class="ai-chatbot-container">
+    <button class="ai-chatbot-toggle" aria-label="Открыть чат-бот">
+      <i class="fas fa-robot"></i>
+    </button>
+    <div class="ai-chatbot-popup">
+      <div class="ai-chatbot-header">
+        <span class="ai-chatbot-title" data-translate="chatbot.title">Londe00 AI Помощник</span>
+        <button class="ai-chatbot-close">&times;</button>
+      </div>
+      <div class="ai-chatbot-messages">
+        <div class="roblox-profile-card">
+          <a href="https://www.roblox.com/users/951516769/profile" target="_blank" rel="noopener noreferrer">
+            <img src="https://tr.rbxcdn.com/150x150/Avatar/headshot/951516769" alt="Londe0k Roblox Avatar" class="roblox-avatar" onerror="this.src='Profile.png';">
+          </a>
+          <div class="roblox-info">
+            <h4>Londe0k</h4>
+            <p data-translate="chatbot.developer">Roblox Developer</p>
+          </div>
+        </div>
+        <div class="ai-chatbot-message bot">
+          <p data-translate="chatbot.greeting">Привет! Я помощник Londe00. Здесь ты можешь узнать обо мне больше или отправить сообщение напрямую!</p>
+        </div>
+        <div class="contact-form">
+          <input type="text" id="contactName" placeholder="Ваше имя" data-translate="chatbot.name.placeholder" required>
+          <input type="text" id="contactContact" placeholder="Ваш Telegram/Discord" data-translate="chatbot.contact.placeholder" required>
+          <input type="text" id="contactMessage" placeholder="Ваше сообщение" data-translate="chatbot.message.placeholder" required>
+          <button id="sendContactMessage" data-translate="chatbot.send">Отправить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function() {
       'use strict';
@@ -948,7 +1162,17 @@
           'contact.text': 'Свяжитесь со мной для обсуждения ваших проектов!',
           'contact.telegram': '@Londe0k',
           'contact.discord': 'Discord: londe00',
-          'footer': `© ${currentYear} Londe00. Все права защищены.`
+          'footer': `© ${currentYear} Londe00. Все права защищены.`,
+          'chatbot.title': 'Londe00 AI Помощник',
+          'chatbot.developer': 'Roblox Developer',
+          'chatbot.greeting': 'Привет! Я помощник Londe00. Здесь ты можешь узнать обо мне больше или отправить сообщение напрямую!',
+          'chatbot.name.placeholder': 'Ваше имя',
+          'chatbot.contact.placeholder': 'Ваш Telegram/Discord',
+          'chatbot.message.placeholder': 'Ваше сообщение',
+          'chatbot.send': 'Отправить',
+          'chatbot.success': 'Спасибо, {name}! Ваше сообщение отправлено Londe00. Он свяжется с вами через {contact} в ближайшее время.',
+          'chatbot.error': 'Ошибка отправки. Попробуйте позже.',
+          'chatbot.sending': 'Отправка сообщения...'
         },
         en: {
           'nav.services': 'Services',
@@ -980,18 +1204,42 @@
           'contact.text': 'Contact me to discuss your projects and ideas!',
           'contact.telegram': '@Londe0k',
           'contact.discord': 'Discord: londe00',
-          'footer': `© ${currentYear} Londe00. All rights reserved.`
+          'footer': `© ${currentYear} Londe00. All rights reserved.`,
+          'chatbot.title': 'Londe00 AI Helper',
+          'chatbot.developer': 'Roblox Developer',
+          'chatbot.greeting': 'Hi! I’m Londe00’s AI assistant. Here you can learn more about me or send a message directly!',
+          'chatbot.name.placeholder': 'Your name',
+          'chatbot.contact.placeholder': 'Your Telegram/Discord',
+          'chatbot.message.placeholder': 'Your message',
+          'chatbot.send': 'Send',
+          'chatbot.success': 'Thanks, {name}! Your message has been sent to Londe00. He will contact you via {contact} soon.',
+          'chatbot.error': 'Error sending. Please try again later.',
+          'chatbot.sending': 'Sending message...'
         }
       };
       const elements = {};
       let currentLang = 'ru';
+      let isSending = false;
+
+      // AI Chatbot Elements
+      const aiChatbotToggle = document.querySelector('.ai-chatbot-toggle');
+      const aiChatbotPopup = document.querySelector('.ai-chatbot-popup');
+      const aiChatbotClose = document.querySelector('.ai-chatbot-close');
+      const aiChatbotSend = document.getElementById('sendContactMessage');
+      const aiChatbotInputName = document.getElementById('contactName');
+      const aiChatbotInputContact = document.getElementById('contactContact');
+      const aiChatbotInputMessage = document.getElementById('contactMessage');
+      const aiChatbotMessages = document.querySelector('.ai-chatbot-messages');
+
       function init() {
         cacheElements();
         currentLang = localStorage.getItem('language') || detectLanguage();
         setLanguage(currentLang);
         setupEventListeners();
         setupAnimations();
+        initAIChatbot();
       }
+
       function cacheElements() {
         elements.allNavLinks = document.querySelectorAll('.nav-link');
         elements.sections = document.querySelectorAll('section');
@@ -1004,13 +1252,18 @@
         elements.langBtns = document.querySelectorAll('.lang-btn');
         elements.translateElements = document.querySelectorAll('[data-translate]');
       }
+
       function setLanguage(lang) {
         currentLang = lang;
         localStorage.setItem('language', lang);
         elements.translateElements.forEach(el => {
           const key = el.dataset.translate;
           if (translations[lang]?.[key]) {
-            el.textContent = translations[lang][key];
+            if (el.tagName === 'INPUT') {
+              el.placeholder = translations[lang][key];
+            } else {
+              el.textContent = translations[lang][key];
+            }
           }
         });
         elements.langBtns.forEach(btn => {
@@ -1018,15 +1271,18 @@
         });
         updateActiveNav();
       }
+
       function detectLanguage() {
         return (navigator.language || navigator.userLanguage || 'ru').toLowerCase().startsWith('ru') ? 'ru' : 'en';
       }
+
       function updateActiveNav() {
         const hash = window.location.hash || '#portfolio';
         elements.allNavLinks.forEach(link => {
           link.classList.toggle('active', link.getAttribute('href') === hash);
         });
       }
+
       function scrollToSection(targetId) {
         const target = document.querySelector(targetId);
         if (target) {
@@ -1035,14 +1291,17 @@
         }
         closeMobileMenu();
       }
+
       function toggleMobileMenu() {
         elements.mobileMenu.classList.toggle('active');
         document.body.style.overflow = elements.mobileMenu.classList.contains('active') ? 'hidden' : '';
       }
+
       function closeMobileMenu() {
         elements.mobileMenu.classList.remove('active');
         document.body.style.overflow = '';
       }
+
       function setupAnimations() {
         const updateProgressAndNav = () => {
           const scrollPercent = Math.min(
@@ -1077,6 +1336,7 @@
         window.addEventListener('scroll', updateProgressAndNav);
         updateProgressAndNav();
       }
+
       function setupEventListeners() {
         elements.langBtns.forEach(btn => {
           btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
@@ -1119,6 +1379,95 @@
           });
         });
       }
+
+      // AI Chatbot Functions
+      function initAIChatbot() {
+        // Toggle Chatbot
+        aiChatbotToggle.addEventListener('click', () => {
+          aiChatbotPopup.style.display = aiChatbotPopup.style.display === 'flex' ? 'none' : 'flex';
+        });
+        aiChatbotClose.addEventListener('click', () => {
+          aiChatbotPopup.style.display = 'none';
+        });
+
+        // Send Message via Telegram API
+        aiChatbotSend.addEventListener('click', async () => {
+          if (isSending) return;
+
+          const name = aiChatbotInputName.value.trim();
+          const contact = aiChatbotInputContact.value.trim();
+          const message = aiChatbotInputMessage.value.trim();
+
+          if (!name || !contact || !message) {
+            alert(translations[currentLang]['chatbot.error']);
+            return;
+          }
+
+          isSending = true;
+
+          // Show sending message
+          const sendingMessage = document.createElement('div');
+          sendingMessage.className = 'ai-chatbot-message bot';
+          sendingMessage.innerHTML = `<p>${translations[currentLang]['chatbot.sending']}</p>`;
+          aiChatbotMessages.appendChild(sendingMessage);
+          aiChatbotMessages.scrollTop = aiChatbotMessages.scrollHeight;
+
+          // Твой токен и chat_id
+          const chatId = '7969799110';
+          const token = '8502772674:AAGOhLXVoZvuzRKwika60ZkzWY5fAL8OXcQ';
+          const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+          try {
+            const response = await fetch(url, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: `📩 Новое сообщение от ${name} (${contact}):\n\n${message}`
+              })
+            });
+
+            // Remove sending message
+            aiChatbotMessages.removeChild(sendingMessage);
+
+            if (response.ok) {
+              const successMessage = translations[currentLang]['chatbot.success']
+                .replace('{name}', name)
+                .replace('{contact}', contact);
+              const botMessage = document.createElement('div');
+              botMessage.className = 'ai-chatbot-message bot';
+              botMessage.innerHTML = `<p>${successMessage}</p>`;
+              aiChatbotMessages.appendChild(botMessage);
+              aiChatbotMessages.scrollTop = aiChatbotMessages.scrollHeight;
+
+              // Очистка формы
+              aiChatbotInputName.value = '';
+              aiChatbotInputContact.value = '';
+              aiChatbotInputMessage.value = '';
+            } else {
+              alert(translations[currentLang]['chatbot.error']);
+            }
+          } catch (error) {
+            // Remove sending message
+            aiChatbotMessages.removeChild(sendingMessage);
+            alert(translations[currentLang]['chatbot.error']);
+          } finally {
+            isSending = false;
+          }
+        });
+
+        // Greeting Message
+        addAIMessage(translations[currentLang]['chatbot.greeting']);
+      }
+
+      function addAIMessage(text) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'ai-chatbot-message bot';
+        messageDiv.innerHTML = `<p>${text}</p>`;
+        aiChatbotMessages.appendChild(messageDiv);
+        aiChatbotMessages.scrollTop = aiChatbotMessages.scrollHeight;
+      }
+
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
       } else {
